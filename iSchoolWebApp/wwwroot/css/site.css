@@ -1,0 +1,71 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #f8f9fa; /* Light gray background color */
+}
+
+h3 {
+    font-size: 1.4rem;
+}
+
+li {
+    margin-bottom: 2%;
+}
+
+.navbar-nav {
+    height: 40px;
+}
+
+.main-container {
+    min-height: 100dvh;
+    margin-top: 4%;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    border: 1px solid black !important;
+    background: black !important;
+}
+
+.navbar li:hover {
+    color: orange;
+}
+
+/* Dan's new added styles... */
+.about {
+    padding: 2.5%;
+    margin: 4.5% 0;
+    border: solid 5px orange;
+    text-align: center;
+}
+.degrees {
+    padding: 2.5%;
+    margin: 4.5% 0;
+    border: solid 5px orange;
+    text-align: center;
+}
+.minors {
+    padding: 2.5%;
+    margin: 4.5%;
+    border: solid 5px orange;
+    text-align: center;
+}
+
+/*CSS from Tailwind*/

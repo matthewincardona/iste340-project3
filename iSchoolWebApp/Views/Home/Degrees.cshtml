@@ -1,0 +1,71 @@
+﻿@model iSchoolWebApp.Models.DegreesModel
+@{
+    ViewData["Title"] = Model.PageTitle; // Set the page title from the model.
+}
+
+<!-- Undergraduate Degrees Section -->
+<h1>Undergraduate Degrees</h1>
+<section class="degrees">
+    @if (Model.Undergraduate != null)
+    {
+        <div class="row">
+            @foreach (var degree in Model.Undergraduate)
+            {
+                <div class="col-md-4">
+                    <section class="my-4">
+                        <h3>
+                            <a asp-controller="Home" asp-action="DegreeDetails" asp-route-degreeId="@degree.DegreeName" asp-route-level="Undergraduate">
+                                @degree.Title
+                            </a>
+                        </h3>
+                    </section>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No undergrad degrees available.</p>
+    }
+</section>
+
+<!-- Graduate Degrees Section -->
+<h1>Graduate Degrees</h1>
+<section class="degrees">
+    @if (Model.Graduate != null)
+    {
+        <div class="row">
+            @foreach (var degree in Model.Graduate)
+            {
+                <div class="col-md-4">
+                    <section class="my-4">
+                        <h3>
+                            <!-- Open corresponding degree -->
+                            <a asp-controller="Home" asp-action="DegreeDetails" asp-route-degreeId="@degree.DegreeName" asp-route-level="Graduate">
+                                @degree.Title
+                            </a>
+                        </h3>
+                    </section>
+
+                    <!-- Certificates Section -->
+                    <section class="certificates">
+                        <ul>
+                            @if (degree.AvailableCertificates != null && degree.AvailableCertificates.Any())
+                            {
+                                <h4>Advanced Certificates</h4>
+                                foreach (var certificate in degree.AvailableCertificates)
+                                {
+                                    <li>@certificate</li>
+                                }
+                            }
+                        </ul>
+                    </section>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No graduate degrees available.</p>
+    }
+</section>

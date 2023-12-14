@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .home {
+/*        display: flex;*/
+/*        justify-content: center;*/
+    }
+</style>
+
+<div class="home text-center">
+    <h1 class="display-4 typist"></h1>
+    <p>Explore some pages to learn more about us.</p>
+    <img src="https://claws.rit.edu/photos/getphotoid.php?Client=Marketing&UN=dsbics&HASH=3505fd3668b8db947eed7fcd2a28510ccbb810ce&T=1702533238" alt="The Bogg"/>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.typist@0.0.7/dist/jquery.typist.min.js" integrity="sha256-dgZWy1eHQTgCK//lOmB/i27gAh8RO/6zZ0aZyfidVCU=" crossorigin="anonymous"></script>
+<script>jQuery(function ($) {
+        $('.typist').typist({
+            speed: 12,
+            text: 'Welcome to the iSchool, home of The Bogaard!'
+        });
+    });</script>

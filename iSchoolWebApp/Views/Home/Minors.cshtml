@@ -1,0 +1,44 @@
+﻿@model iSchoolWebApp.Models.MinorsModel
+@{
+    ViewData["Title"] = Model.PageTitle;
+}
+
+<h1>Minors</h1>
+<section class="minor">
+    @if (Model.UgMinors != null)
+        {
+            <div id="accordion">
+                @foreach (var minor in Model.UgMinors)
+                {
+                    <h2>@minor.Title</h2>
+                    <div>
+                        <p>@minor.Description</p>
+                        <p>Courses</p>
+                        <ul>
+                            @if (minor.Courses != null)
+                            {
+                                @foreach (var course in minor.Courses)
+                                {
+                                    <li>
+                                        <!-- Open corresponding course -->
+                                        <a asp-controller="Home" asp-action="CourseDetails" asp-route-courseId="@course">
+                                            @course
+                                        </a>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li>No description information available.</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p>No minor information available.</p>
+        }
+
+</section>

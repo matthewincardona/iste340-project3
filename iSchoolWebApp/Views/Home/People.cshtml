@@ -1,0 +1,102 @@
+﻿@model iSchoolWebApp.Models.PeopleModel
+@{
+    ViewData["Title"] = Model.PageTitle;
+}
+<!-- Custom styles -->
+<style>
+    section.people {
+        margin-top: 20px;
+    }
+
+    .people__col {
+        padding: 5%;
+        margin: 4.5%;
+        border: solid 2px orange;
+        margin-bottom: 20px;
+        min-height: 500px;
+        cursor: pointer;
+        /*        display: flex;
+        justify-content: center;
+        align-items: center;*/
+    }
+
+    img {
+        width: 50%;
+        height: auto;
+    }
+
+    .popup-content {
+        width: 500px;
+        height: 400px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<div class="container">
+    <h1>@Model.Title</h1>
+    <p>@Model.SubTitle</p>
+    <section class="people row">
+        @if (Model.Faculty != null && Model.Faculty.Any())
+        {
+            @foreach (var person in Model.Faculty)
+            {
+                <div class="col-md-6 col-lg-4">
+                    <div class="people__col faculty-popup" data-website="@person?.Website" data-twitter="@person?.Twitter" data-facebook="@person?.Facebook"
+                         data-phone="@person?.Phone" data-email="@person?.Email" data-interestArea="@person?.InterestArea">
+                        <img src="@person?.ImagePath" alt="Profile Image" />
+                        <h2>@person?.Name</h2>
+                        <p>@person?.Title</p>
+                        <p>Room: @person?.Office</p>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="col">No faculty information available.</p>
+        }
+    </section>
+</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bpopup/0.11.0/jquery.bpopup.min.js"></script>
+<div>
+    <script>$(document).ready(function () {
+            $('.faculty-popup').on('click', function () {
+                var website = $(this).data('website') || 'Not available';
+                var twitter = $(this).data('twitter') || 'Not available';
+                var facebook = $(this).data('facebook') || 'Not available';
+                var phone = $(this).data('phone') || 'Not available';
+                var email = $(this).data('email') || 'Not available';
+                var interestArea = $(this).data('interestArea') || 'Not available';
+
+                // Create popup content with website and social media info
+                var popupContent = `
+                    <div>
+                        <h3>More about this professor</h3>
+                        <p>Areas of Interest: ${interestArea}</p>
+                        <p>Website: ${website}</p>
+                        <p>${twitter !== 'Not available' ? `<i class="bi bi-twitter"></i> ${twitter}` : ''}</p>
+                        <p>${facebook !== 'Not available' ? `<i class="bi bi-facebook"></i> ${facebook}` : ''}</p>
+                        <p>${phone !== 'Not available' ? `<i class="bi bi-phone"></i> ${phone}` : ''}</p>
+                        <p>${email !== 'Not available' ? `<i class="bi bi-envelope"></i> ${email}` : ''}</p>
+                    </div>
+                `;
+
+                // Popup slides in from the left and leaves to the right
+                $('<div class="popup-content">' + popupContent + '</div>').bPopup({
+                    modalClose: true,
+                    opacity: 0.6,
+                    speed: 650,
+                    transition: 'slideIn',
+                    transitionClose: 'slideBack'
+                });
+            });
+        });</script>
+</div>
+

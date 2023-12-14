@@ -1,0 +1,24 @@
+﻿@model iSchoolWebApp.Models.DegreeDetailsModel
+@{
+    ViewData["Title"] = Model.DegreeName;
+}
+
+
+<h1>Course Details</h1>
+<p>Course ID: @Model.DegreeName</p>
+<p>Course Title: @Model.DegreeTitle</p>
+<p>Course Description: @Model.DegreeDescription</p>
+<strong>Concentrations:</strong>
+<ul>
+        @if (Model.Concentrations != null)
+        {
+            @foreach (var concentration in Model.Concentrations)
+            {
+                <li>@concentration</li>
+            }
+        }
+        else
+        {
+<li>No concentrations available.</li>
+        }
+    </ul>

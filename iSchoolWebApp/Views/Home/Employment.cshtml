@@ -1,0 +1,128 @@
+﻿@model iSchoolWebApp.Models.EmploymentModel
+@{
+    ViewData["Title"] = Model.PageTitle;
+}
+
+<!-- Custom styles -->
+<style>
+    .employment__introduction {
+        padding: 5% 5% 4% 5%;
+        margin: 4.5% 0;
+        border: solid 5px orange;
+    }
+</style>
+
+<!-- Page Title -->
+<h1>@Model.CoopTable?.Title</h1>
+
+<section class="employment">
+    <!-- Introduction Section -->
+    <section class="employment__introduction">
+        <h2>@Model.Introduction?.Title</h2>
+        @if (Model.Introduction?.Content != null && Model.Introduction.Content.Any())
+        {
+            <ul>
+                @foreach (var content in Model.Introduction.Content)
+                {
+                    <li style="margin-bottom: 4%">
+                        <strong>@content.Title</strong>: @content.Description
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Introduction not available.</p>
+        }
+    </section>
+
+    <div class="row" style="margin-bottom: 20px">
+        <!-- Degree Statistics Section -->
+        <div class="col-md-4">
+            @if (Model.DegreeStatistics?.Statistics != null && Model.DegreeStatistics.Statistics.Any())
+            {
+                <section class="my-4">
+                    <h2>@Model.DegreeStatistics?.Title</h2>
+                    <ul>
+                        @foreach (var statistic in Model.DegreeStatistics.Statistics)
+                        {
+                            <li>
+                                <strong>@statistic.Value</strong>: @statistic.Description
+                            </li>
+                        }
+                    </ul>
+                </section>
+            }
+        </div>
+
+        <!-- Employers Section -->
+        <div class="col-md-4">
+            @if (Model.Employers?.EmployerNames != null && Model.Employers.EmployerNames.Any())
+            {
+                <section class="my-4">
+                    <h2>@Model.Employers?.Title</h2>
+                    <ul>
+                        @foreach (var employerName in Model.Employers.EmployerNames)
+                        {
+                            <li>@employerName</li>
+                        }
+                    </ul>
+                </section>
+            }
+        </div>
+
+        <!-- Careers Section -->
+        <div class="col-md-4">
+            @if (Model.Careers?.CareerNames != null && Model.Careers.CareerNames.Any())
+            {
+                <section class="my-4">
+                    <h2>@Model.Careers?.Title</h2>
+                    <ul>
+                        @foreach (var careerName in Model.Careers.CareerNames)
+                        {
+                            <li>@careerName</li>
+                        }
+                    </ul>
+                </section>
+            }
+        </div>
+    </div>
+
+    <!-- Co-op Table Section -->
+    <section>
+        @if (Model.CoopTable?.CoopInformation != null && Model.CoopTable.CoopInformation.Any())
+        {
+            <h2>Co-op Table</h2>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Employer</th>
+                        <th>Degree</th>
+                        <th>City</th>
+                        <th>Term</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.CoopTable?.CoopInformation != null && Model.CoopTable.CoopInformation.Any())
+                    {
+                        @foreach (var employment in Model.CoopTable?.CoopInformation)
+                        {
+                            <tr>
+                                <td>@employment.Employer</td>
+                                <td>@employment.Degree</td>
+                                <td>@employment.City</td>
+                                <td>@employment.Term</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>No co-op information available.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </section>
+</section>

@@ -1,0 +1,42 @@
+﻿@model iSchoolWebApp.Models.CoursesModel
+@{
+    ViewData["Title"] = Model.PageTitle;
+}
+
+<h1>Courses</h1>
+<section class="courses">
+    @if (Model.CourseDegrees != null)
+    {
+        <div id="accordion">
+
+            @foreach (var courseDegree in Model.CourseDegrees)
+            {
+                <h1>@courseDegree.DegreeName | Semester: @courseDegree.Semester</h1>
+                <div>
+                    <ul>
+                        @if (courseDegree.Courses != null)
+                        {
+                            @foreach (var courseCode in courseDegree.Courses)
+                            {
+                                <li>
+                                    <!-- Open corresponding course -->
+                                    <a asp-controller="Home" asp-action="CourseDetails" asp-route-courseId="@courseCode">
+                                        @courseCode
+                                    </a>
+                                </li>
+                            }
+                        }
+                        else
+                        {
+                            <li>No course information available.</li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No course information available.</p>
+    }
+</section>
